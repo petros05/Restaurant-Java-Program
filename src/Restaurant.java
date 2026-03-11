@@ -62,12 +62,12 @@ public class Restaurant {
     }
 
     public String toString(){
-        return "Restaurant Name: " + name +
+        return "\nRestaurant Name: " + name +
                 "\nWait Time: " + waitTime +
                 "\nRating: " + rating +
                 "\nAverage Price: " + avrPrice +
                 "\nDistance: " + distance +
-                "\nHours Open: " + hoursOpen;
+                "\nHours Open: " + hoursOpen + "\n";
     }
 }
 
