@@ -5,8 +5,18 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
+
+        try {
+            scanRestaurantFile(restaurants);
+        } catch (FileNotFoundException error) {
+            System.out.println(error);
+        }
+        printRandomRestaurant(restaurants);
+    }
+
+    public static void scanRestaurantFile(ArrayList<Restaurant> restaurants) throws FileNotFoundException {
         File file = new File("restaurant.txt");
         Scanner scan = new Scanner(file);
         scan.useDelimiter(",");
@@ -30,9 +40,7 @@ public class Main {
             // Add restaurant to Array list
             restaurants.add(restaurant);
         }
-
-        printRandomRestaurant(restaurants);
-        
+        scan.close();
     }
 
     /**
