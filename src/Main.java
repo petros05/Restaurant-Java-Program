@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
-        Random random =  new Random();
         File file = new File("restaurant.txt");
         Scanner scan = new Scanner(file);
         scan.useDelimiter(",");
@@ -32,8 +31,18 @@ public class Main {
             restaurants.add(restaurant);
         }
 
-        int numRestaurants = restaurants.size();
+        printRandomRestaurant(restaurants);
+        
+    }
+
+    /**
+     * Chooses a random Restaurant from an ArrayList and outputs the Restaurant
+     * @param list ArrayList of Restaurants
+     */
+    public static void printRandomRestaurant(ArrayList<Restaurant> list) {
+        Random random =  new Random();
+        int numRestaurants = list.size();
         int randomIndex = random.nextInt(numRestaurants - 1);
-        System.out.println(restaurants.get(randomIndex));
+        System.out.println(list.get(randomIndex));
     }
 }
