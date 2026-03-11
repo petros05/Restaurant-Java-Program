@@ -4,13 +4,21 @@ A small Java console project that reads restaurant data from a text file, stores
 
 ## Project Structure
 
-- `src/Main.java`: Program entry point. Reads file data into an `ArrayList<Restaurant>` and prints one random item.
+- `src/Main.java`: Program entry point. Reads file data into an `ArrayList<Restaurant>`, then calls `printRandomRestaurant(...)`.
 - `src/Restaurant.java`: `Restaurant` model class (fields, constructor, getters/setters, and `toString()`).
-- `src/restaurant.txt`: Source data file used by `Main.java`.
+- `restaurant.txt`: Input data file read by `Main.java` using `new File("restaurant.txt")`.
+
+## Program Flow
+
+1. Create an empty `ArrayList<Restaurant>`.
+2. Open `restaurant.txt` with `Scanner`.
+3. Read each comma-separated row into fields.
+4. Create a `Restaurant` object per row and add it to the list.
+5. Call `printRandomRestaurant(ArrayList<Restaurant> list)` to print one random restaurant.
 
 ## Data Format
 
-Each restaurant is a comma-separated row in `src/restaurant.txt`:
+Each restaurant is a comma-separated row in `restaurant.txt`:
 
 `name,waitTime,rating,averagePrice,distance,hoursOpen,`
 
@@ -20,20 +28,20 @@ Example:
 
 ## How To Run
 
-## Compile and run from terminal (PowerShell)
+### Compile and run from terminal (PowerShell)
 
 ```powershell
 javac -d out src\Restaurant.java src\Main.java
 java -cp out Main
 ```
 
+Note: if your file is currently `src/restaurant.txt`, either move it to project root as `restaurant.txt` or change `Main.java` to `new File("src/restaurant.txt")`.
+
 ## Run in VS Code
 
 1. Open the folder in VS Code.
 2. Run `Main.java` with the Java extension.
-3. Current code uses `new File("restaurant.txt")`, so either:
-   - place `restaurant.txt` in project root, or
-   - change code to `new File("src/restaurant.txt")` to use the file already in `src`.
+3. Make sure `restaurant.txt` is in the project root folder (same level as `src`).
 
 ## Run in IntelliJ IDEA
 
@@ -54,7 +62,7 @@ That path is relative to the current working directory. If your IDE uses a diffe
 If needed, either:
 
 - Keep working directory at project root, or
-- Change the path in code to `src/restaurant.txt` (matches this repo's current file location).
+- Change the path in code if your data file is stored elsewhere.
 
 ## Git Notes
 
