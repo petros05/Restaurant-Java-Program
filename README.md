@@ -1,74 +1,78 @@
 # Restaurant (Java)
 
-A small Java console project that reads restaurant data from a text file, stores each row as a `Restaurant` object, and prints one random restaurant recommendation.
+This is a small Java console program that reads restaurant data from a text file, creates a `Restaurant` object for each entry, stores them in an `ArrayList`, and prints one random restaurant.
 
-## Project Structure
+## What The Program Does
 
-- `src/Main.java`: Program entry point. Reads file data into an `ArrayList<Restaurant>`, then calls `printRandomRestaurant(...)`.
-- `src/Restaurant.java`: `Restaurant` model class (fields, constructor, getters/setters, and `toString()`).
-- `restaurant.txt`: Input data file read by `Main.java` using `new File("restaurant.txt")`.
+`Main.java`:
 
-## Program Flow
+1. Creates an empty `ArrayList<Restaurant>`.
+2. Reads restaurant data from a comma-separated text file.
+3. Builds a `Restaurant` object for each row.
+4. Stores every object in the list.
+5. Prints one randomly selected restaurant.
 
-1. Create an empty `ArrayList<Restaurant>`.
-2. Open `restaurant.txt` with `Scanner`.
-3. Read each comma-separated row into fields.
-4. Create a `Restaurant` object per row and add it to the list.
-5. Call `printRandomRestaurant(ArrayList<Restaurant> list)` to print one random restaurant.
+`Restaurant.java`: 
+
+- `name`
+- `waitTime`
+- `rating`
+- `avrPrice`
+- `distance`
+- `hoursOpen`
+
+## File Structure
+
+- `src/Main.java` - program entry point and file reading logic
+- `src/Restaurant.java` - restaurant class with fields, constructor, getters/setters, and `toString()`
+- `src/restaurant.txt` - input data used by the program
 
 ## Data Format
 
-Each restaurant is a comma-separated row in `restaurant.txt`:
+Each restaurant is stored as a comma separated record in `restaurant.txt`:
 
-`name,waitTime,rating,averagePrice,distance,hoursOpen,`
+```text
+name,waitTime,rating,averagePrice,distance,hoursOpen,
+```
 
 Example:
 
-`Applebee's,1,3.9,25,20,11:00 AM - 12:00 AM,`
-
-## How To Run
-
-### Compile and run from terminal (PowerShell)
-
-```powershell
-javac -d out src\Restaurant.java src\Main.java
-java -cp out Main
+```text
+Applebee's,1,3.9,25,20,11:00 AM - 12:00 AM,
 ```
 
-Note: if your file is currently `src/restaurant.txt`, either move it to project root as `restaurant.txt` or change `Main.java` to `new File("src/restaurant.txt")`.
+Field meanings:
 
-## Run in VS Code
+- `name`: restaurant name
+- `waitTime`: estimated wait time as an integer
+- `rating`: restaurant rating as a decimal value
+- `averagePrice`: average meal price
+- `distance`: distance from the user
+- `hoursOpen`: hours of operation
 
-1. Open the folder in VS Code.
-2. Run `Main.java` with the Java extension.
-3. Make sure `restaurant.txt` is in the project root folder (same level as `src`).
+## How Scanning Works
 
-## Run in IntelliJ IDEA
+The `scanRestaurantFile(...)` method:
 
-1. Open the project in IntelliJ.
-2. Open **Run | Edit Configurations...**
-3. Select your `Main` run config.
-4. Set **Working directory** to project root:
-   `.../Restaurant`
-5. Run `Main`.
+- opens the file using `Scanner`
+- uses commas as delimiters
+- reads values in this order: `String`, `int`, `double`, `double`, `double`, `String`
+- trims the restaurant name
+- restaurant any rating above `5` would change to `5`
+- creates a `Restaurant` object and adds it to the `ArrayList`
 
-## File Path Note
+## How Random Selection Works
 
-`Main.java` uses:
+The `printRandomRestaurant(...)` method picks a random index from the list and prints the selected restaurant using the `toString()` method from `Restaurant.java`.
 
-`new File("restaurant.txt")`
 
-That path is relative to the current working directory. If your IDE uses a different working directory, the file may not be found.
-If needed, either:
+## Example Output
 
-- Keep working directory at project root, or
-- Change the path in code if your data file is stored elsewhere.
-
-## Git Notes
-
-- `.class` files are compiled output and are not source code.
-- Recommended: do not commit `.class` files.
-- Typical `.gitignore` entries:
-  - `*.class`
-  - `out/`
-  - `bin/`
+```text
+Restaurant Name: Chili's
+Wait Time: 3
+Rating: 4.0
+Average Price: 20.0
+Distance: 20.0
+Hours Open: 11:00 AM - 10:00 PM
+```
