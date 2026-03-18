@@ -50,7 +50,7 @@ public class Main {
     public static void printRandomRestaurant(ArrayList<Restaurant> list) {
         Random random =  new Random();
         int numRestaurants = list.size();
-        int randomIndex = random.nextInt(numRestaurants - 1);
+        int randomIndex = random.nextInt(numRestaurants);
         System.out.println(list.get(randomIndex));
     }
 }
